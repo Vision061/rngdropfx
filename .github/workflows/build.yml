@@ -1,10 +1,9 @@
-# Automatically build the project and run any configured tests for every push
-# and submitted pull request. This can help catch issues that only occur on
-# certain platforms or Java versions, and provides a first line of defence
-# against bad commits.
-
+# Baut die Mod bei jedem Push und veröffentlicht die .jar unter "Releases".
 name: build
-on: [pull_request, push]
+on: [push, workflow_dispatch]
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -28,3 +27,11 @@ jobs:
         with:
           name: Artifacts
           path: build/libs/
+      - name: publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "build-${{ github.run_number }}" build/libs/*.jar \
+            --title "RNG Drop FX (Build ${{ github.run_number }})" \
+            --notes "Für Minecraft 26.1.2 + Fabric API. Die .jar unten herunterladen und in den mods-Ordner legen." \
+            --latest

@@ -1,0 +1,20 @@
+{
+	"schemaVersion": 1,
+	"id": "rngdropfx",
+	"version": "${version}",
+	"name": "RNG Drop FX",
+	"description": "Spielt eine fette Animation mit Sounds ab, wenn du auf Hypixel SkyBlock einen RNG-Drop bekommst.",
+	"authors": ["Harun"],
+	"license": "MIT",
+	"icon": "assets/rngdropfx/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": ["com.rngdropfx.RngDropFx"]
+	},
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
